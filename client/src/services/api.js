@@ -315,6 +315,91 @@ export const getLastMessageChatCoffeeVn = async () => {
   }
 };
 
+
+
+
+export const createChatCoffeeRobusta = async (chatData) => {
+
+  console.log("chatData:", chatData);
+  try {
+    const response = await axios.post(`${API_URL}/chats_coffee_robusta`, chatData, {
+      withCredentials: true,
+    }
+      )
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getLastMessageChatCoffeeRobusta = async () => {
+  try {
+    //const token = localStorage.getItem("token");
+    const response = await axios.get(`${API_URL}/chats_coffee_robusta/findLastMessage`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+export const getChatCoffeeRobusta = async () => {
+  try {
+    //const token = localStorage.getItem("token");
+    const response = await axios.get(`${API_URL}/chats_coffee_robusta/findPaging?page=0&size=50`, {
+      withCredentials: true,
+    });
+    return response.data.content;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+
+export const createChatCoffeeArabica = async (chatData) => {
+
+  console.log("chatData:", chatData);
+  try {
+    const response = await axios.post(`${API_URL}/chats_coffee_arabica`, chatData, {
+      withCredentials: true,
+    }
+      )
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getLastMessageChatCoffeeArabica = async () => {
+  try {
+    //const token = localStorage.getItem("token");
+    const response = await axios.get(`${API_URL}/chats_coffee_arabica/findLastMessage`, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+export const getChatCoffeeArabica = async () => {
+  try {
+    //const token = localStorage.getItem("token");
+    const response = await axios.get(`${API_URL}/chats_coffee_arabica/findPaging?page=0&size=50`, {
+      withCredentials: true,
+    });
+    return response.data.content;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 export const getGalleries = async () => {
   try {
     //const token = localStorage.getItem("token");

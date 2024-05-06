@@ -17,8 +17,8 @@ import { FaUserCircle } from "react-icons/fa";
 
 import { IoCloseCircle } from "react-icons/io5";
 
-import { createChatCoffeeVn, getChatCoffeeVn, getLastMessageChatCoffeeVn, getRooms } from "../../services/api";
-import { createCommandCoffeeVn, getCommandCoffeeVn } from "../../services/api_command_coffeevn";
+import { createChatCoffeeRobusta, createChatCoffeeVn, getChatCoffeeRobusta, getChatCoffeeVn, getLastMessageChatCoffeeRobusta, getLastMessageChatCoffeeVn, getRooms } from "../../services/api";
+import { createCommandCoffeeRobusta, getCommandCoffeeRobusta } from "../../services/api_command_coffeerobusta";
 const ChatBoxCoffeeRobusta = () => {
     const [isOn, setIsOn] = useState(false);
     const navigate = useNavigate();
@@ -57,7 +57,7 @@ const ChatBoxCoffeeRobusta = () => {
                 content: message,
             };
 
-            const response = await createChatCoffeeVn(newMessage);
+            const response = await createChatCoffeeRobusta(newMessage);
 
             fetChatCoffeeVn();
             //  setChatMessages([...chatMessages, newMessage]);
@@ -85,7 +85,7 @@ const ChatBoxCoffeeRobusta = () => {
 
     const fetChatCoffeeVn = async () => {
         try {
-            const chatList = await getChatCoffeeVn();
+            const chatList = await getChatCoffeeRobusta();
             console.log("chatList0:", chatList[0]);
             if (chatList.length > 0) {
                 setLastMessage(chatList[0]);
@@ -103,7 +103,7 @@ const ChatBoxCoffeeRobusta = () => {
 
     const fetCommandCoffeeVn = async () => {
         try {
-            const commandVn = await getCommandCoffeeVn();
+            const commandVn = await getCommandCoffeeRobusta();
             setCommandCoffeeVnList([...commandVn].reverse());
         } catch (error) {
             console.error('Error:', error);
@@ -126,7 +126,7 @@ const ChatBoxCoffeeRobusta = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getLastMessageChatCoffeeVn();
+                const response = await getLastMessageChatCoffeeRobusta();
 
                 console.log("chatResponse:", response);
                 console.log("lastMessage:", lastMessage);
@@ -189,13 +189,13 @@ const ChatBoxCoffeeRobusta = () => {
 
     const handleCreateCommandCoffeeVn = async (value, money, username) => {
 
-        const newCommand = { 
+        const newCommand = {
             value: value,
-             money: money,
-              username: username 
-            };
+            money: money,
+            username: username
+        };
 
-        const response = await createCommandCoffeeVn(newCommand);
+        const response = await createCommandCoffeeRobusta(newCommand);
         setShowPopup(false);
         //createCommandCoffeeVn
 
@@ -214,9 +214,18 @@ const ChatBoxCoffeeRobusta = () => {
 
             </div>
             <div className="flex justify-start mt-5 ml-5 md:justify-center sm:justify-center lg:justify-start">
-                <p className="font-bold">Phòng chat Coffee VN</p>
+                <p className="font-bold">Phòng chat Coffee Robusta</p>
             </div>
-            <div className='h-[1px] bg-base_color w-full'></div>
+            <div className="flex">
+
+                <button className="px-5 py-1 ml-5 text-white bg-green-500 rounded">Đặt lệnh xanh</button>
+                <button className="px-5 py-1 ml-5 text-white bg-red-500 rounded ">Đặt lênh đỏ</button>
+
+
+            </div>
+            <div className='mt-1 h-[1px] flex bg-base_color w-full'>
+
+            </div>
 
             <div className="flex w-[100%] ml-5 flex-row justify-center">
 
@@ -277,13 +286,13 @@ const ChatBoxCoffeeRobusta = () => {
                                     <input onChange={handleValueChange} className="w-full mt-5" placeholder="Số tiền đặt cược:" />
                                     <button
                                         className="px-4 py-2 mt-4 font-bold text-white bg-green-500 rounded hover:bg-blue-600"
-                                        onClick={()=>handleCreateCommandCoffeeVn(1, value, selectedUser )}
+                                        onClick={() => handleCreateCommandCoffeeVn(1, value, selectedUser)}
                                     >
                                         Gửi lệnh xanh
                                     </button>
                                     <button
                                         className="px-4 py-2 mt-4 font-bold text-white bg-red-500 rounded hover:bg-blue-600"
-                                        onClick={()=>handleCreateCommandCoffeeVn(-1, value, selectedUser )}
+                                        onClick={() => handleCreateCommandCoffeeVn(-1, value, selectedUser)}
                                     >
                                         Gửi lệnh đỏ
                                     </button>

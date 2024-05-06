@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import CruiseList from '../components/admin/CruiseList';
 import RoomList from '../components/admin/RoomList';
 import ChatBoxCoffeeVn from '../components/admin/ChatBoxCoffeeVn';
+import ChatBoxCoffeeRobusta from '../components/admin/ChatBoxCoffeeRobusta';
 
 const ChatBoxCoffeeRobustaPage = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const ChatBoxCoffeeRobustaPage = () => {
           <Sidebar menu="tab2" />
         </div>
         <div className="flex w-[100%]   flex-row justify-center">     
-          <ChatBoxCoffeeVn />
+          <ChatBoxCoffeeRobusta />
         </div>
       </div>
     </div>
